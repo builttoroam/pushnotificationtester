@@ -93,6 +93,10 @@
                     <TextBox x:Name="TB_ClientSecret"
                              Margin="0,0,0,5"
                              TextWrapping="Wrap" />
+                    <TextBlock Text="Package Name" />
+                    <TextBox x:Name="TB_PackageFullName"
+                             Margin="0,0,0,5"
+                             TextWrapping="Wrap" LostFocus="LookUpFullName" />
                     <TextBlock Text="Channel URL" />
                     <TextBox x:Name="TB_ChannelURL"
                              Margin="0,0,0,5"

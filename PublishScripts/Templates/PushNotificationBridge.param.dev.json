@@ -1,0 +1,29 @@
+{
+  "siteName": {
+    "value": "PushNotificationBridge"
+  },
+  "hostingPlanName": {
+    "value": "Default1"
+  },
+  "siteLocation": {
+    "value": "West US"
+  },
+  "sku": {
+    "value": "Shared"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "siteMode": {
+    "value": "Limited"
+  },
+  "computeMode": {
+    "value": "0"
+  },
+  "subscriptionId": {
+    "value": "62614c14-65f6-46c9-8f79-d20e39610af3"
+  },
+  "resourceGroup": {
+    "value": "Default-Web-WestUS"
+  }
+}

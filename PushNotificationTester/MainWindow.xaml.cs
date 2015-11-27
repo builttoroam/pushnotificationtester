@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -140,6 +141,24 @@ namespace PushNotificationTester
         private void OpenDevCenterClick(object sender, RoutedEventArgs e)
         {
             Process.Start("https://account.live.com/Developers/Applications");
+        }
+
+        private async void LookUpFullName(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var packageId = Uri.EscapeUriString( TB_PackageFullName.Text).Replace(".", "_");
+
+                var http = new HttpClient();
+                var baseUri =
+                    $"http://pushnotificationbridge.azurewebsites.net/api/bridge/id={packageId}";
+               var channel =  await http.GetStringAsync(baseUri);
+                TB_ChannelURL.Text = channel.Trim('\"');
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }
