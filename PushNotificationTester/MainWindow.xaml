@@ -1,0 +1,137 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PushNotificationTester"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        x:Class="PushNotificationTester.MainWindow"
+        mc:Ignorable="d"
+        Title="Push Notification Tester">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="HelpStates">
+                <VisualState x:Name="HelpHidden" />
+                <VisualState x:Name="HelpVisible">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                       Storyboard.TargetName="stackPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="SendingStates">
+                <VisualState x:Name="Sending">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                       Storyboard.TargetName="grid">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(ProgressBar.IsIndeterminate)"
+                                                        Storyboard.TargetName="progressBar">
+                            <DiscreteBooleanKeyFrame KeyTime="0"
+                                                     Value="True" />
+                        </BooleanAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="NotSending" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="5">
+                    <Button Content="Launch Developer Center"
+                            Click="OpenDevCenterClick"
+                            HorizontalAlignment="Left"
+                            Padding="5,1"
+                            Margin="0,0,5,0"/>
+                    <ToggleButton x:Name="toggleButton"
+                                  Content="?"
+                                  Padding="5,1"
+                                  HorizontalAlignment="Left">
+                        
+                    </ToggleButton>
+                </StackPanel>
+                <StackPanel x:Name="stackPanel"
+                            Visibility="Collapsed">
+                    <TextBlock x:Name="textBlock2"
+                               Text="Log into the Microsoft account Developer Center"
+                               TextWrapping="Wrap"
+                               Margin="5" />
+                    <Image x:Name="image"
+                           HorizontalAlignment="Left"
+                           Height="300"
+                           Source="Image1.png"
+                           Margin="5,0"
+                           Stretch="Uniform" />
+                    <TextBlock x:Name="textBlock"
+                               Margin="5"
+                               Text="Click on the application that you want to test push notifications for"
+                               TextWrapping="Wrap" />
+                    <Image x:Name="image1"
+                           Margin="5,0,5,5"
+                           HorizontalAlignment="Left"
+                           Height="300"
+                           Source="Image3.png"
+                           Stretch="Uniform" />
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Package SID" />
+                    <TextBox x:Name="TB_PackageSID"
+                             Margin="0,0,0,5"
+                             TextWrapping="Wrap" />
+                    <TextBlock Text="Client Secret" />
+                    <TextBox x:Name="TB_ClientSecret"
+                             Margin="0,0,0,5"
+                             TextWrapping="Wrap" />
+                    <TextBlock Text="Channel URL" />
+                    <TextBox x:Name="TB_ChannelURL"
+                             Margin="0,0,0,5"
+                             TextWrapping="Wrap" />
+                    <Button Click="SendClick"
+                            Padding="5,1"
+                            Content="Send Push Notification"
+                            HorizontalAlignment="Left" />
+                </StackPanel>
+            </StackPanel>
+
+        </ScrollViewer>
+        <Grid Grid.Row="1">
+            <TextBlock Text="Copyright © 2015, Built to Roam Pty Ltd, http://www.builttoroam.com"
+                       FontSize="8"
+                       VerticalAlignment="Center"
+                       Margin="5,0,0,0" />
+            <Image Source="BTR-Logo-COLOUR.png"
+                   HorizontalAlignment="Right"
+                   Margin="5"
+                   Width="100"
+                   d:LayoutOverrides="HorizontalAlignment"
+                   VerticalAlignment="Center" />
+        </Grid>
+        <Grid x:Name="grid"
+              Visibility="Collapsed"
+              Grid.RowSpan="2">
+            <Border Background="Black"
+                    Opacity="0.9" />
+            <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Sending...."
+                       Foreground="White"
+                           Margin="0,0,0,5"
+                           HorizontalAlignment="Center"/>
+            <ProgressBar x:Name="progressBar"
+                         Height="10"
+                         HorizontalAlignment="Stretch"
+                         MaxWidth="208" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
